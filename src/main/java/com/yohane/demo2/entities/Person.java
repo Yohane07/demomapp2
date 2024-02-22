@@ -16,8 +16,9 @@ public class Person {
     private Long id;
     private String name;
     @JsonIgnore
+    //Le optional = false est indispensable
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = true)
+            fetch = FetchType.LAZY, optional = false)
     @PrimaryKeyJoinColumn
     private Passport passport;
 
