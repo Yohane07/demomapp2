@@ -17,8 +17,7 @@ public class Person {
     private String name;
     @JsonIgnore
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = true)
-    @PrimaryKeyJoinColumn
+            fetch = FetchType.LAZY, optional = false)
     private Passport passport;
 
     public Person() {

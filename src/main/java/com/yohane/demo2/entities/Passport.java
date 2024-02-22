@@ -14,9 +14,6 @@ public class Passport {
     private Long id;
     private String number;
 
-    //MapsId
-    @JsonIgnore
-    @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     private Person person;
