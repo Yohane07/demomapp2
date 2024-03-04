@@ -21,7 +21,6 @@ public class Person {
     private Passport passport;
 
     public Person() {
-
     }
 }
 
