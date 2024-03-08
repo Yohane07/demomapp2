@@ -24,9 +24,10 @@ public class Person {
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private Passport passport;
-    // Unidirectionnelle
+    // Unidirectionnelle with join column
     @OneToMany(cascade = CascadeType.ALL,
             orphanRemoval = true)
+    @JoinColumn(name = "person_id")
     private List<Bagage> bagages = new ArrayList<>();
 
     public Person() {
