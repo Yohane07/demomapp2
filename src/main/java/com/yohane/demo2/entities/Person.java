@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,8 +22,12 @@ public class Person {
     private String name;
     @JsonIgnore
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
+            fetch = FetchType.LAZY)
     private Passport passport;
+    // Unidirectionnelle
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Bagage> bagages = new ArrayList<>();
 
     public Person() {
     }

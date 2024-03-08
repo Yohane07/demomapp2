@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequestMapping("/api/passports")
 public class PassportControllers {
 
-    private PassportService passportService;
+    private final PassportService passportService;
 
     @Autowired
     public PassportControllers(PassportService passportService){
