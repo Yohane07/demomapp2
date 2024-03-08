@@ -21,13 +21,10 @@ public class Person {
     private Long id;
     private String name;
     @JsonIgnore
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    private Passport passport;
-    // Unidirectionnelle with join column
-    @OneToMany(cascade = CascadeType.ALL,
+    // Bidirectionnelle pour meilleure propagation d'état du côté one comme many
+    @OneToMany(mappedBy = "person",
+            cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JoinColumn(name = "person_id")
     private List<Bagage> bagages = new ArrayList<>();
 
     public Person() {
