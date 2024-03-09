@@ -3,10 +3,13 @@ package com.yohane.demo2.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,8 +20,8 @@ public class Bagage {
     private Long id;
     private String number;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Person person;
+    @ManyToMany(mappedBy = "bagages")
+    private List<Person> persons = new ArrayList<>();
     public Bagage() {
 
     }

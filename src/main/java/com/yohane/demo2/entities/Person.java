@@ -21,10 +21,12 @@ public class Person {
     private Long id;
     private String name;
     @JsonIgnore
-    // Bidirectionnelle pour meilleure propagation d'état du côté one comme many
-    @OneToMany(mappedBy = "person",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    // Dans le cas où c'est un bagage appartenant à plusieurs personnes
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name="person_bagage")
     private List<Bagage> bagages = new ArrayList<>();
 
     public Person() {
