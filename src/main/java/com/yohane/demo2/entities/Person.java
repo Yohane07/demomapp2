@@ -5,11 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.LazyToOne;
-import org.hibernate.annotations.LazyToOneOption;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,8 +23,11 @@ public class Person {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinTable(name="person_bagage")
-    private List<Bagage> bagages = new ArrayList<>();
+    @JoinTable(name="person_bagage",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "bagage_id")
+    )
+    private Set<Bagage> bagages = new HashSet<>();
 
     public Person() {
     }
